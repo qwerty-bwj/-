@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.student_command.mapper.StudentMapper">
+
+
+    <select id="getRecordById" parameterType="Integer" resultType="com.example.student_command.entity.Record">
+        select tc.t_name,t.detail,r.time
+        from record as r,teacher as tc,template as t
+        where r.s_id=#{sId} and r.t_id=tc.t_id and r.t_num=t.t_num
+        order by r.time
+        limit #{start},10
+    </select>
+</mapper>

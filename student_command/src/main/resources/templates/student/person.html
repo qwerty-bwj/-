@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html  xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Student</title>
+<!-- for-mobile-apps -->
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="keywords" content="" />
+<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false);
+		function hideURLbar(){ window.scrollTo(0,1); } </script>
+<!-- //for-mobile-apps -->
+<link th:href="@{/css/style1.css}" rel="stylesheet" type="text/css" media="all" />
+<link href='https://fonts.googleapis.com/css?family=Lato:400,100,100italic,300italic,300,400italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Fugaz+One' rel='stylesheet' type='text/css'>
+<link rel="stylesheet" href="/css/tbStyle.css" >
+</head>
+<body>
+	<div class="main">
+		<h1>Mini Profile Widget</h1>
+		<div style="display: flex;">
+			<div class="content" style="margin-left: 20em;width: 400px">
+				<div class="profile">
+					<img src="/images/pic1.png" alt=" " />
+					<h2 th:text="${student.SName}"></h2>
+					<p th:text="${student.sId}"></p>
+					<p>[[${course.grade}]] 年 [[${course.classes}]] 班</p>
+				</div>
+				<div class="main-grid3">
+
+						<div class="bar">
+							<p>总分：[[${student.score}]]</p>
+						</div>
+					<div class="skills">
+						 <div class="skill1" style="width:10%"> </div>
+					</div>
+				</div>
+				<div class="follow">
+					<a th:href="@{/login}">EXIT</a>
+				</div>
+			</div>
+			<div class="content" style="width: 900px;margin-right: 20em;margin-left: 5em;text-align: center">
+				<table id="background-image" summary="Meeting Results" style="width: 800px;">
+					<thead>
+					<tr>
+						<th scope="col" style="color: white">序号</th>
+						<th scope="col" style="color: white">评价教师</th>
+						<th scope="col" style="color: white">评价内容</th>
+						<th scope="col" style="color: white">评价时间</th>
+					</tr>
+					</thead>
+					<tbody>
+					<tr th:each="record,stats:${records.rows}">
+						<td style="color: white">[[${stats.count}]]</td>
+						<td style="color: white">[[${record.tName}]]</td>
+						<td style="color: white">[[${record.detail}]]</td>
+						<td style="color: white">[[${record.getTime()}]]</td>
+					</tr>
+					</tbody>
+					<tfoot>
+					<tr>
+						<td colspan="6" style="text-align: center;">
+							<section class="archive-pages">
+								<ul style="display: inline-flex">
+									<li class="first"><a th:href="@{/student/person(page=1)}" title="first page">first page</a></li>
+									<li class="previous">
+										<a th:if="${page>1}" th:href="@{/student/person(page=${page}-1)}" title="previous page">previous page</a>
+										<a th:if="${page==1}" th:href="@{/student/person(page=1)}" title="previous page">previous page</a>
+									</li>
+									<li th:if="${records.total==0}" th:class="selected"><a th:href="@{/student/person(page=1)}" th:class="font-color">1</a></li>
+									<li th:if="${records.total%10!=0&&records.total!=0}" th:class="${num==page?'selected':''}" th:each="num:${#numbers.sequence(1,records.total/10+1)}"><a th:href="@{/student/person(page=${num})}" th:class="${num==page?'font-color':''}">[[${num}]]</a></li>
+									<li th:if="${records.total%10==0&&records.total!=0}" th:class="${num==page?'selected':''}" th:each="num:${#numbers.sequence(1,records.total/10)}"><a th:href="@{/student/person(page=${num})}" th:class="${num==page?'font-color':''}">[[${num}]]</a></li>
+									<li class="next" th:if="${records.total==0}"><a th:href="@{/student/person(page=1)}" title="next page">next page</a></li>
+									<li class="next" th:if="${records.total!=0&&records.total%10!=0}">
+										<a th:if="${page<records.total/10+1}" th:href="@{/student/person(page=${page}+1)}" title="next page">next page</a>
+										<a th:if="${page==records.total/10+1}" th:href="@{/student/person(page=${page})}" title="next page">next page</a>
+									</li>
+									<li class="next" th:if="${records.total!=0&&records.total%10==0}">
+										<a th:if="${page<records.total/10}" th:href="@{/student/person(page=${page}+1)}" title="next page">next page</a>
+										<a th:if="${page==records.total/10}" th:href="@{/student/person(page=${page})}" title="next page">next page</a>
+									</li>
+									<li class="last" th:if="${records.total==0}"><a th:href="@{/student/person(page=1)}" title="last page">last page</a></li>
+									<li class="last" th:if="${records.total%10!=0&&records.total!=0}"><a th:href="@{/student/person(page=${records.total/10+1})}" title="last page">last page</a></li>
+									<li class="last" th:if="${records.total%10==0&&records.total!=0}"><a th:href="@{/student/person(page=${records.total/10})}" title="last page">last page</a></li>
+								</ul>
+							</section>
+						</td>
+					</tr>
+					</tfoot>
+				</table>
+			</div>
+		</div>
+
+	</div>
+</body>
+</html>

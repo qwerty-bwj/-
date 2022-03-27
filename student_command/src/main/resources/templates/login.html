@@ -1,0 +1,83 @@
+﻿<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>登录</title>
+
+<link rel="stylesheet" href="css/reset.min.css">
+<link rel="stylesheet" href="css/denglustyle.css">
+
+</head>
+<body>
+
+<section class="user">
+  <div class="user_options-container">
+    <div class="user_options-text">
+      <div class="user_options-unregistered">
+        <h2 class="user_unregistered-title">学生端口</h2>
+        <p class="user_unregistered-text">如果你是学生，点击此处登录</p>
+        <button class="user_unregistered-signup" id="signup-button">学生登录</button>
+      </div>
+
+      <div class="user_options-registered">
+        <h2 class="user_registered-title">教师端口</h2>
+        <p class="user_registered-text">如果你是教师，点击此处登录</p>
+        <button class="user_registered-login" id="login-button">教师登录</button>
+      </div>
+    </div>
+    
+    <div class="user_options-forms" id="user_options-forms">
+      <div class="user_forms-login">
+        <h2 class="forms_title">教师登录</h2>
+        <form class="forms_form" th:action="@{/teacher/login}" method="post">
+          <fieldset class="forms_fieldset">
+            <div class="forms_field">
+              <input name="userName" type="text" placeholder="账号" class="forms_field-input" required autofocus />
+            </div>
+            <div class="forms_field">
+              <input id="pwd" name="password" type="password" placeholder="密码" class="forms_field-input" required />
+            </div>
+          </fieldset>
+          <div class="forms_buttons">
+              <button type="button" class="forms_buttons-forgot">忘记密码?</button>
+              <input type="submit" value="登录" class="forms_buttons-action" onclick="checkForm()">
+          </div>
+        </form>
+      </div>
+      <div class="user_forms-signup">
+        <h2 class="forms_title">学生登录</h2>
+        <form class="forms_form" th:action="@{/student/login}" method="post">
+          <fieldset class="forms_fieldset">
+            <div class="forms_field">
+              <input name="userName" type="text" placeholder="账号" class="forms_field-input" required />
+            </div>
+            <div class="forms_field">
+              <input id="pwd1" name="password" type="password" placeholder="密码" class="forms_field-input" required />
+            </div>
+          </fieldset>
+          <div class="forms_buttons">
+            <input type="submit" value="登录" class="forms_buttons-action" onclick="checkForm1()">
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script src="js/dengluscript.js"></script>
+<script src="js/md5.js"></script>
+<script>
+  function checkForm() {
+    var pwd = document.getElementById('pwd');
+    pwd.value = md5(pwd.value);// 把密码变为MD5
+    return true;
+  }
+  function checkForm1() {
+    var pwd1 = document.getElementById('pwd1');
+    pwd1.value = md5(pwd1.value);// 把密码变为MD5
+    return true;
+  }
+</script>
+ 
+</body>
+</html>

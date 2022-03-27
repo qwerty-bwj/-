@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.student_command.mapper.TeacherMapper">
+
+    <resultMap type="com.example.student_command.entity.Course" id="Course">
+        <result column="c_id" property="cId"/>
+        <result column="grade" property="grade"/>
+        <result column="classes" property="classes"/>
+        <result column="course_name" property="courseName"/>
+    </resultMap>
+
+    <select id="getCourseBytId" parameterType="Integer" resultMap="Course">
+        select c.*,course_name
+        from course as c,t_c_relationship as r
+        where c.c_id=r.c_id and r.t_id=#{tId}
+        order by c_id
+    </select>
+
+    <update id="updateStuScore" parameterType="Integer">
+        update student
+        set
+        score=score+(select score from template where t_num=#{tNum})
+        where s_id=#{sId}
+    </update>
+
+    <select id="getRecordBytId" parameterType="Integer" resultType="com.example.student_command.entity.Record">
+        select r.r_num,s.s_id,s.s_name,t.detail,r.time
+        from record as r,student as s,template as t
+        where r.t_id=#{tId} and r.s_id=s.s_id and r.t_num=t.t_num
+        order by r.time
+        limit #{start},10
+    </select>
+
+    <update id="deleteStuScore" parameterType="Integer">
+        update student
+        set
+        score=score-(select score from record as r,template as t where r_num=#{rNum} and r.t_num=t.t_num)
+        where s_id=(select s_id from record as r where r_num=#{rNum})
+    </update>
+</mapper>

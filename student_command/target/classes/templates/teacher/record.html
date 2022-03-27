@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<title>Teacher</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<link href='http://fonts.googleapis.com/css?family=Cagliostro' rel='stylesheet' type='text/css'>
+	<link href="/css/style.css" rel="stylesheet" type="text/css" media="all" />
+	<link rel="stylesheet" href="/css/bootstrap.min.css" >
+	<link rel="stylesheet" href="/css/tbStyle.css" >
+</head>
+<body>
+<div class="wrap">
+<div class="wrapper">
+<div class="logo">
+	<a href="index.html"><h1>SCHOOL</h1></a>
+</div>
+<div class="header_right">
+	<div class="cssmenu">
+		<ul>
+			<li><a th:href="@{/teacher/main}"><span>Course</span></a></li>
+			<li class="active"><a th:href="@{/teacher/record}"><span>Record</span></a></li>
+			<li><a th:href="@{/login}"><span>Exit</span></a></li>
+			<div class="clear"></div>
+		</ul>
+	</div>
+</div>
+	<div class="clear"></div>
+</div>
+</div>
+	<div class="main_bg">
+		<br>
+		<div class="container">
+			<div style="display: inline-flex">
+				<table id="background-image" summary="Meeting Results" style="width: 1120px">
+					<thead>
+					<tr>
+						<th scope="col">序号</th>
+						<th scope="col">学生学号</th>
+						<th scope="col">学生姓名</th>
+						<th scope="col">评价内容</th>
+						<th scope="col">评价时间</th>
+						<th scope="col">操作</th>
+					</tr>
+					</thead>
+					<tbody>
+					<tr th:each="record,stats:${recordLst.rows}">
+						<td>[[${stats.count}]]</td>
+						<td>[[${record.sId}]]</td>
+						<td>[[${record.sName}]]</td>
+						<td>[[${record.detail}]]</td>
+						<td>[[${record.getTime()}]]</td>
+						<td>
+							<a th:href="@{/teacher/record/delete(rNum=${record.rNum},page=${page})}" class="btn btn-danger btn-sm" style="background-color: green" type="button">撤销</a>
+						</td>
+					</tr>
+					</tbody>
+					<tfoot>
+					<tr>
+						<td colspan="6" style="text-align: center;">
+							<section class="archive-pages">
+								<ul style="display: inline-flex">
+									<li class="first"><a th:href="@{/teacher/record(page=1)}" title="first page">first page</a></li>
+									<li class="previous">
+										<a th:if="${page>1}" th:href="@{/teacher/record(page=${page}-1)}" title="previous page">previous page</a>
+										<a th:if="${page==1}" th:href="@{/teacher/record(page=1)}" title="previous page">previous page</a>
+									</li>
+									<li th:if="${recordLst.total==0}" th:class="selected"><a th:href="@{/teacher/record(page=1)}" th:class="font-color">1</a></li>
+									<li th:if="${recordLst.total%10!=0&&recordLst.total!=0}" th:class="${num==page?'selected':''}" th:each="num:${#numbers.sequence(1,recordLst.total/10+1)}"><a th:href="@{/teacher/record(page=${num})}" th:class="${num==page?'font-color':''}">[[${num}]]</a></li>
+									<li th:if="${recordLst.total%10==0&&recordLst.total!=0}" th:class="${num==page?'selected':''}" th:each="num:${#numbers.sequence(1,recordLst.total/10)}"><a th:href="@{/teacher/record(page=${num})}" th:class="${num==page?'font-color':''}">[[${num}]]</a></li>
+									<li class="next" th:if="${recordLst.total==0}"><a th:href="@{/teacher/record(page=1)}" title="next page">next page</a></li>
+									<li class="next" th:if="${recordLst.total%10!=0}">
+										<a th:if="${page<recordLst.total/10+1}" th:href="@{/teacher/record(page=${page}+1)}" title="next page">next page</a>
+										<a th:if="${page==recordLst.total/10+1}" th:href="@{/teacher/record(page=${page})}" title="next page">next page</a>
+									</li>
+									<li class="next" th:if="${recordLst.total%10==0}">
+										<a th:if="${page<recordLst.total/10}" th:href="@{/teacher/record(page=${page}+1)}" title="next page">next page</a>
+										<a th:if="${page==recordLst.total/10}" th:href="@{/teacher/record(page=${page})}" title="next page">next page</a>
+									</li>
+									<li class="last" th:if="${recordLst.total==0}"><a th:href="@{/teacher/record(page=1)}" title="last page">last page</a></li>
+									<li class="last" th:if="${recordLst.total%10!=0&&recordLst.total!=0}"><a th:href="@{/teacher/record(page=${recordLst.total/10+1})}" title="last page">last page</a></li>
+									<li class="last" th:if="${recordLst.total%10==0&&recordLst.total!=0}"><a th:href="@{/teacher/record(page=${recordLst.total/10})}" title="last page">last page</a></li>
+								</ul>
+							</section>
+						</td>
+					</tr>
+					</tfoot>
+				</table>
+			</div>
+		</div>
+		<br><br>
+	</div>
+<div class="wrap">
+<div class="wrapper">
+	<div class="footer">
+		<div class="social-icons">
+	   		  	<ul>
+			      <li class="icon_1"><a href="#" target="_blank"> </a></li>
+			      <li class="icon_2"><a href="#" target="_blank"> </a></li>
+			      <li class="icon_3"><a href="#" target="_blank"> </a></li>
+			      <li class="icon_4"><a href="#" target="_blank"> </a></li>
+			      <div class="clear"></div>
+		     </ul>
+	   	 </div>
+		<a href="index.html"><h2>SCHOOL</h2></a>
+		<div class="copy">
+			<p class="w3-link">Copyright &copy; 2014.Company name All rights reserved.</p>
+		</div>
+	</div>
+</div>
+<div class="clear"></div>
+</div>
+<div style="display:none"><script src='http://v7.cnzz.com/stat.php?id=155540&web_id=155540' language='JavaScript' charset='gb2312'></script></div>
+</body>
+</html>

@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<title>Teacher</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<link href='http://fonts.googleapis.com/css?family=Cagliostro' rel='stylesheet' type='text/css'>
+	<link href="/css/style.css" rel="stylesheet" type="text/css" media="all" />
+	<link rel="stylesheet" href="/css/bootstrap.min.css" >
+	<link rel="stylesheet" href="/css/tbStyle.css" >
+</head>
+<body>
+<div class="wrap">
+<div class="wrapper">
+<div class="logo">
+	<a href="index.html"><h1>SCHOOL</h1></a>
+</div>
+<div class="header_right">
+	<div class="cssmenu">
+		<ul>
+			<li class="active"><a th:href="@{/teacher/main}"><span>Course</span></a></li>
+			<li><a th:href="@{/teacher/record}"><span>Record</span></a></li>
+			<li><a th:href="@{/login}"><span>Exit</span></a></li>
+			<div class="clear"></div>
+		</ul>
+	</div>
+</div>
+	<div class="clear"></div>
+</div>
+</div>
+	<div class="main_bg">
+		<br>
+		<div class="container">
+			<form method="post" th:action="@{/teacher/commandTmp/{cId}(cId=${cId})}">
+				<div style="display: inline-flex">
+					<table id="background-image" summary="Meeting Results">
+						<thead>
+							<tr>
+								<th scope="col">选择</th>
+								<th scope="col">学号</th>
+								<th scope="col">姓名</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr th:each="student,stats:${students.rows}">
+								<td><input type="checkbox" name="stu" th:value="${student.sId}"></td>
+								<td>[[${student.sId}]]</td>
+								<td>[[${student.sName}]]</td>
+							</tr>
+						</tbody>
+						<tfoot>
+							<tr>
+								<td colspan="4" style="text-align: center">
+									<section class="archive-pages">
+										<ul style="display: inline-flex">
+											<li class="first"><a th:href="@{/teacher/Course/{cId}(cId=${cId},tpn=${temPage})}" title="first page">first page</a></li>
+											<li class="previous">
+												<a th:if="${stuPage>1}" th:href="@{/teacher/Course/{cId}(cId=${cId},spn=${stuPage}-1,tpn=${temPage})}" title="previous page">previous page</a>
+												<a th:if="${stuPage==1}" th:href="@{/teacher/Course/{cId}(cId=${cId},spn=${stuPage},tpn=${temPage})}" title="previous page">previous page</a>
+											</li>
+
+											<li th:if="${students.total==0}" th:class="selected"><a th:href="@{/teacher/Course/{cId}(cId=${cId},spn=1,tpn=${temPage})}" th:class="font-color">1</a></li>
+											<li th:if="${students.total%10!=0&&students.total!=0}" th:class="${num==stuPage?'selected':''}" th:each="num:${#numbers.sequence(1,students.total/10+1)}"><a th:href="@{/teacher/Course/{cId}(cId=${cId},spn=${num},tpn=${temPage})}" th:class="${num==stuPage?'font-color':''}">[[${num}]]</a></li>
+											<li th:if="${students.total%10==0&&students.total!=0}" th:class="${num==stuPage?'selected':''}" th:each="num:${#numbers.sequence(1,students.total/10)}"><a th:href="@{/teacher/Course/{cId}(cId=${cId},spn=${num},tpn=${temPage})}" th:class="${num==stuPage?'font-color':''}">[[${num}]]</a></li>
+
+											<li class="next" th:if="${students.total==0}"><a th:href="@{/teacher/Course/{cId}(cId=${cId},spn=1,tpn=${temPage})}" title="next page">next page</a></li>
+											<li class="next" th:if="${students.total!=0&&students.total%10!=0}">
+												<a th:if="${stuPage<students.total/10+1}" th:href="@{/teacher/Course/{cId}(cId=${cId},spn=${stuPage}+1,tpn=${temPage})}" title="next page">next page</a>
+												<a th:if="${stuPage==students.total/10+1}" th:href="@{/teacher/Course/{cId}(cId=${cId},spn=${stuPage},tpn=${temPage})}" title="next page">next page</a>
+											</li>
+											<li class="next" th:if="${students.total!=0&&students.total%10==0}">
+												<a th:if="${stuPage<students.total/10}" th:href="@{/teacher/Course/{cId}(cId=${cId},spn=${stuPage}+1,tpn=${temPage})}" title="next page">next page</a>
+												<a th:if="${stuPage==students.total/10}" th:href="@{/teacher/Course/{cId}(cId=${cId},spn=${stuPage},tpn=${temPage})}" title="next page">next page</a>
+											</li>
+
+											<li class="last" th:if="${students.total==0}"><a th:href="@{/teacher/Course/{cId}(cId=${cId},spn=1,tpn=${temPage})}" title="last page">last page</a></li>
+											<li class="last" th:if="${students.total%10!=0&&students.total!=0}"><a th:href="@{/teacher/Course/{cId}(cId=${cId},spn=${students.total/10+1},tpn=${temPage})}" title="last page">last page</a></li>
+											<li class="last" th:if="${students.total%10==0&&students.total!=0}"><a th:href="@{/teacher/Course/{cId}(cId=${cId},spn=${students.total/10},tpn=${temPage})}" title="last page">last page</a></li>
+										</ul>
+									</section>
+								</td>
+							</tr>
+						</tfoot>
+					</table>
+
+					<table id="background-image" summary="Meeting Results" style="width: 700px;margin-left: 20px">
+						<thead>
+						<tr>
+							<th scope="col">选择</th>
+							<th scope="col">序号</th>
+							<th scope="col">评价内容</th>
+							<th scope="col">分数</th>
+						</tr>
+						</thead>
+						<tbody>
+						<tr th:each="temple,stats:${temples.rows}">
+							<td><input type="checkbox" name="tem" th:value="${temple.tNum}"></td>
+							<td>[[${stats.count}]]</td>
+							<td>[[${temple.detail}]]</td>
+							<td>[[${temple.score}]]</td>
+						</tr>
+						</tbody>
+						<tfoot>
+						<tr>
+							<td colspan="4" style="text-align: center">
+								<section class="archive-pages">
+									<ul style="display: inline-flex">
+										<li class="first"><a th:href="@{/teacher/Course/{cId}(cId=${cId},spn=${stuPage})}" title="first page">first page</a></li>
+										<li class="previous">
+											<a th:if="${temPage>1}" th:href="@{/teacher/Course/{cId}(cId=${cId},tpn=${temPage}-1,spn=${stuPage})}" title="previous page">previous page</a>
+											<a th:if="${temPage==1}" th:href="@{/teacher/Course/{cId}(cId=${cId},tpn=${temPage},spn=${stuPage})}" title="previous page">previous page</a>
+										</li>
+
+										<li th:if="${temples.total==0}" th:class="selected"><a th:href="@{/teacher/Course/{cId}(cId=${cId},tpn=1,spn=${stuPage})}" th:class="font-color">1</a></li>
+										<li th:if="${temples.total%10!=0&&temples.total!=0}" th:class="${num==temPage?'selected':''}" th:each="num:${#numbers.sequence(1,temples.total/10+1)}"><a th:href="@{/teacher/Course/{cId}(cId=${cId},tpn=${num},spn=${stuPage})}" th:class="${num==temPage?'font-color':''}">[[${num}]]</a></li>
+										<li th:if="${temples.total%10==0&&temples.total!=0}" th:class="${num==temPage?'selected':''}" th:each="num:${#numbers.sequence(1,temples.total/10)}"><a th:href="@{/teacher/Course/{cId}(cId=${cId},tpn=${num},spn=${stuPage})}" th:class="${num==temPage?'font-color':''}">[[${num}]]</a></li>
+
+										<li class="next" th:if="${temples.total%10!=0}">
+											<a th:if="${temPage<temples.total/10+1}" th:href="@{/teacher/Course/{cId}(cId=${cId},tpn=${temPage}+1,spn=${stuPage})}" title="next page">next page</a>
+											<a th:if="${temPage==temples.total/10+1}" th:href="@{/teacher/Course/{cId}(cId=${cId},tpn=${temPage},spn=${stuPage})}" title="next page">next page</a>
+										</li>
+										<li class="next" th:if="${temples.total%10==0}">
+											<a th:if="${temPage<temples.total/10}" th:href="@{/teacher/Course/{cId}(cId=${cId},tpn=${temPage}+1,spn=${stuPage})}" title="next page">next page</a>
+											<a th:if="${temPage==temples.total/10}" th:href="@{/teacher/Course/{cId}(cId=${cId},tpn=${temPage},spn=${stuPage})}" title="next page">next page</a>
+										</li>
+
+										<li class="last" th:if="${temples.total==0}"><a th:href="@{/teacher/Course/{cId}(cId=${cId},tpn=1,spn=${stuPage})}" title="last page">last page</a></li>
+										<li class="last" th:if="${temples.total%10!=0&&temples.total!=0}"><a th:href="@{/teacher/Course/{cId}(cId=${cId},tpn=${temples.total/10+1},spn=${stuPage})}" title="last page">last page</a></li>
+										<li class="last" th:if="${temples.total%10==0&&temples.total!=0}"><a th:href="@{/teacher/Course/{cId}(cId=${cId},tpn=${temples.total/10},spn=${stuPage})}" title="last page">last page</a></li>
+									</ul>
+								</section>
+							</td>
+						</tr>
+						</tfoot>
+					</table>
+				</div>
+				<div style="text-align: center;margin-top: 5px">
+					<button type="submit" th:disabled="${students.total==0||temples.total==0}?'true':'false'">评&nbsp;&nbsp;&nbsp;&nbsp;价</button>
+				</div>
+			</form>
+		</div>
+		<br><br>
+	</div>
+<div class="wrap">
+<div class="wrapper">
+	<div class="footer">
+		<div class="social-icons">
+	   		  	<ul>
+			      <li class="icon_1"><a href="#" target="_blank"> </a></li>
+			      <li class="icon_2"><a href="#" target="_blank"> </a></li>
+			      <li class="icon_3"><a href="#" target="_blank"> </a></li>
+			      <li class="icon_4"><a href="#" target="_blank"> </a></li>
+			      <div class="clear"></div>
+		     </ul>
+	   	 </div>
+		<a href="index.html"><h2>SCHOOL</h2></a>
+		<div class="copy">
+			<p class="w3-link">Copyright &copy; 2014.Company name All rights reserved.</p>
+		</div>
+	</div>
+</div>
+<div class="clear"></div>
+</div>
+<div style="display:none"><script src='http://v7.cnzz.com/stat.php?id=155540&web_id=155540' language='JavaScript' charset='gb2312'></script></div>
+</body>
+</html>

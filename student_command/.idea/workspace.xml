@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="44fd7b40-1133-4f62-b1a0-3691b299d3a7" name="默认更改列表" comment="" />
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="DatabaseView">
+    <option name="SHOW_INTERMEDIATE" value="true" />
+    <option name="GROUP_DATA_SOURCES" value="true" />
+    <option name="GROUP_SCHEMA" value="true" />
+    <option name="GROUP_CONTENTS" value="false" />
+    <option name="SORT_POSITIONED" value="false" />
+    <option name="SHOW_EMPTY_GROUPS" value="false" />
+    <option name="AUTO_SCROLL_FROM_SOURCE" value="false" />
+    <option name="HIDDEN_KINDS">
+      <set />
+    </option>
+    <expand />
+    <select />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="CSS File" />
+        <option value="Interface" />
+        <option value="JavaScript File" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="importingSettings">
+      <MavenImportingSettings>
+        <option name="importAutomatically" value="true" />
+      </MavenImportingSettings>
+    </option>
+  </component>
+  <component name="ProjectId" id="26bX3QmfnPCbsuZ4lmwmskpL8Yl" />
+  <component name="PropertiesComponent">
+    <property name="RequestMappingsPanelOrder0" value="0" />
+    <property name="RequestMappingsPanelOrder1" value="1" />
+    <property name="RequestMappingsPanelWidth0" value="75" />
+    <property name="RequestMappingsPanelWidth1" value="75" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/java/com/example/student_command" />
+    <property name="list.type.of.created.stylesheet" value="CSS" />
+    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="F:\Program Files\JetBrains\IDEA Project\毕设学习\第五阶段培训\student_command\src\main\java\com\example\student_command" />
+      <recent name="F:\Program Files\JetBrains\IDEA Project\毕设学习\第五阶段培训\student_command\src\main\resources\static\css" />
+      <recent name="F:\Program Files\JetBrains\IDEA Project\毕设学习\第五阶段培训\student_command\src\main\resources\templates\error" />
+      <recent name="F:\Program Files\JetBrains\IDEA Project\毕设学习\第五阶段培训\student_command\src\main\resources\static\images" />
+      <recent name="F:\Program Files\JetBrains\IDEA Project\毕设学习\第五阶段培训\student_command\src\main\resources\static" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="F:\Program Files\JetBrains\IDEA Project\毕设学习\第五阶段培训\student_command\src\main\resources\static\css" />
+      <recent name="F:\Program Files\JetBrains\IDEA Project\毕设学习\第五阶段培训\student_command\src\main\resources\static" />
+    </key>
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="RunManager">
+    <configuration name="StudentCommandApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="student_command" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.example.student_command.StudentCommandApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="44fd7b40-1133-4f62-b1a0-3691b299d3a7" name="默认更改列表" comment="" />
+      <created>1647693059263</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1647693059263</updated>
+      <workItem from="1647693064434" duration="5172000" />
+      <workItem from="1647746031727" duration="4857000" />
+      <workItem from="1647767209798" duration="1788000" />
+      <workItem from="1647769024295" duration="5028000" />
+      <workItem from="1647779545670" duration="348000" />
+      <workItem from="1647779910718" duration="3793000" />
+      <workItem from="1647790236506" duration="4766000" />
+      <workItem from="1647795066098" duration="3463000" />
+      <workItem from="1647820959692" duration="5385000" />
+      <workItem from="1647846518229" duration="74190000" />
+      <workItem from="1648357190568" duration="1953000" />
+      <workItem from="1648360492184" duration="230000" />
+      <workItem from="1648360739539" duration="660000" />
+      <workItem from="1648361428824" duration="1302000" />
+      <workItem from="1648362849701" duration="12242000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+</project>

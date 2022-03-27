@@ -1,0 +1,22 @@
+##############################################
+# 数据库相关配置
+##############################################
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/springboot
+    username: root
+    password: 123456
+
+#############################################
+#
+# 配置Mybatis规则
+#
+#############################################
+mybatis:
+  # Sql所有映射文件 *.xml 路径
+  mapper-locations: classpath:/mapper/*.xml
+  # 指定mybatis全局配置文件中的相关配置项
+  configuration:
+    # 开启驼峰命名规则
+    map-underscore-to-camel-case: true
