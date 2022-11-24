@@ -1,4 +1,4 @@
-# 第五阶段学生评价系统
+# 学生评价系统
 
 # 创建数据库
 ![image](https://user-images.githubusercontent.com/77372534/160311051-657c918d-0aff-49ff-9b2b-74d4081827c1.png)
